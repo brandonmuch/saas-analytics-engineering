@@ -1,0 +1,11 @@
+version: 2
+
+models:
+  - name: stg_saas__customers
+    description: Cleaned customer records, one row per customer, with light renaming from the raw source.
+
+  - name: stg_saas__subscriptions
+    description: Cleaned subscription event log, one row per subscription lifecycle event (signup, upgrade, downgrade, cancellation).
+
+  - name: stg_saas__billing_events
+    description: Cleaned monthly billing attempt records, including payment status.
