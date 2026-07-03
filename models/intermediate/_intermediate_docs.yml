@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: int_subscription_periods
+    description: >
+      Derives the time period each customer spent on a given subscription plan, using a window function
+      to calculate the start and end date of each period from the subscription event log. This approach
+      was chosen over SCD Type 2 snapshots to keep the transformation logic within the standard staging
+      to marts modeling pattern, since snapshots require a separate dbt feature outside this project's scope.
