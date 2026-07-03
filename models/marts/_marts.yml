@@ -1,0 +1,35 @@
+version: 2
+
+models:
+  - name: dim_customers
+    description: One row per customer, including their plan history and total lifetime value.
+    columns:
+      - name: customer_id
+        description: Unique identifier for each customer.
+        data_tests:
+          - unique
+          - not_null
+
+      - name: customer_status
+        description: Whether the customer is currently active or has cancelled.
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['active', 'cancelled']
+
+  - name: fct_mrr
+    description: Monthly Recurring Revenue broken down by new, expansion, contraction, and churned revenue for each calendar month.
+    columns:
+      - name: reporting_month
+        description: The calendar month this row represents.
+        data_tests:
+          - unique
+          - not_null
+
+      - name: total_mrr
+        description: Total Monthly Recurring Revenue for this month across all customers.
+        data_tests:
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 0
+                inclusive: true
