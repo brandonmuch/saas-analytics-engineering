@@ -1,0 +1,19 @@
+version: 2
+
+sources:
+  - name: saas
+    database: saas-analytics-engineering
+    schema: raw
+    tables:
+      - name: customers
+      - name: subscriptions
+      - name: billing_events
+        config:
+          loaded_at_field: billing_date
+          freshness:
+            warn_after:
+              count: 35
+              period: day
+            error_after:
+              count: 60
+              period: day
